@@ -1,5 +1,5 @@
 streamlit
 numpy
-tensorflow
 pillow
 plotly
+keras==2.15.0
