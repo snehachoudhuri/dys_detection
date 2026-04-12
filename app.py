@@ -89,8 +89,10 @@ st.markdown("""
 # ---------------- MODEL ----------------
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("dyslexia_handwriting_model_sem6.h5")
-
+    return tf.keras.models.load_model(
+    "dyslexia_handwriting_model_sem6.h5",
+    compile=False
+)
 model = load_model()
 labels = {0: "Normal", 1: "Dyslexia", 2: "Corrected"}
 
