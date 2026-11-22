@@ -90,9 +90,9 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     return tf.keras.models.load_model(
-    "dyslexia_handwriting_model_sem6.h5",
-    compile=False
-)
+        "dyslexia_handwriting_model_sem7.h5",
+        compile=False
+    )
 model = load_model()
 labels = {0: "Normal", 1: "Dyslexia", 2: "Corrected"}
 
@@ -115,7 +115,7 @@ if st.session_state.page == "home":
     # STATS
     st.markdown("### System Capabilities")
     s1, s2, s3 = st.columns(3)
-    s1.metric("Accuracy", "92%")
+    s1.metric("Accuracy", "78.6%")
     s2.metric("Processing Time", "1.2s")
     s3.metric("Model Type", "CNN")
 
@@ -186,7 +186,7 @@ elif st.session_state.page == "analyze":
         angles = []
 
         if lines is not None:
-            for x1, y1, x2, y2 in lines[:, 0]:
+            for x1, y1, x2, y2 in lines.reshape(-1, 4):
                 angle = np.degrees(np.arctan2((y2 - y1), (x2 - x1)))
                 angles.append(angle)
                 cv2.line(slant_img, (x1, y1), (x2, y2), (0, 255, 0), 1)
